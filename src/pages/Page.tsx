@@ -1,31 +1,91 @@
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import React from 'react';
-import { useParams } from 'react-router';
-import ExploreContainer from '../components/ExploreContainer';
-import './Page.css';
+import {
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCol,
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonMenuButton,
+  IonPage,
+  IonRow,
+} from "@ionic/react";
+import { analytics, create, notifications, personCircle } from "ionicons/icons";
+import React from "react";
+import "./Page.css";
+import logo from "../assets/images/logo.svg";
+import { useHistory } from "react-router-dom";
 
 const Page: React.FC = () => {
-
-  const { name } = useParams<{ name: string; }>();
-
+  let history = useHistory();
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonMenuButton />
-          </IonButtons>
-          <IonTitle>{name}</IonTitle>
-        </IonToolbar>
+        <div className="dashboard-header">
+          <IonRow>
+            <IonCol size="4" className="menu-icon-container">
+              <IonMenuButton className="menu-icon" />
+            </IonCol>
+            <IonCol size="4" className="logo-icon-container">
+              <img src={logo} alt="" className="logo" />
+            </IonCol>
+            <IonCol size="4" className="notification-icon-container">
+              <IonIcon
+                md={notifications}
+                className="notification-icon"
+                onClick={() => history.push("/notifications")}
+              ></IonIcon>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol size="12" className="title-container">
+              Gestion Cv
+            </IonCol>
+          </IonRow>
+        </div>
       </IonHeader>
-
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">{name}</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name={name} />
+        <div className="dashboard-container">
+          <IonRow>
+            <IonCol size="6">
+              <IonCard className="dashboard-item dashboard-item-1">
+                <IonCardHeader>
+                  <IonIcon
+                    md={analytics}
+                    className="dashboard-item-icon"
+                  ></IonIcon>
+                </IonCardHeader>
+                <IonCardContent>Estadísticas</IonCardContent>
+              </IonCard>
+            </IonCol>
+            <IonCol size="6">
+              <IonCard className="dashboard-item dashboard-item-2" onClick={() => history.push("/account")}>
+                <IonCardHeader>
+                  <IonIcon
+                    md={personCircle}
+                    className="dashboard-item-icon"
+                  ></IonIcon>
+                </IonCardHeader>
+                <IonCardContent>Cuenta</IonCardContent>
+              </IonCard>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol size="12">
+              <IonCard className="dashboard-item-3" onClick={() => history.push("/modify")}>
+                <IonCardHeader>
+                  <IonIcon
+                    md={create}
+                    className="dashboard-item-icon"
+                  ></IonIcon>
+                </IonCardHeader>
+                <IonCardContent>
+                  <h3>Modificar CV</h3>
+                </IonCardContent>
+              </IonCard>
+            </IonCol>
+          </IonRow>
+        </div>
       </IonContent>
     </IonPage>
   );
