@@ -1,27 +1,74 @@
 import {
-  IonButton,
   IonCol,
   IonContent,
-  IonDatetime,
   IonHeader,
   IonIcon,
-  IonInput,
-  IonItem,
   IonLabel,
   IonMenuButton,
   IonPage,
-  IonRange,
   IonRow,
   IonSegment,
   IonSegmentButton,
-  IonTextarea,
+  IonToast,
 } from "@ionic/react";
-import { create, sunny } from "ionicons/icons";
+import { create } from "ionicons/icons";
 import React, { useState } from "react";
+/* Interfaces */
+import { skill } from "../../interfaces/skills.interface";
+import { experience } from "../../interfaces/experience.interface";
+import { formation } from "../../interfaces/formation.skill";
+/* Services */
+import {
+  setExperiences,
+  setFormations,
+  setSkills,
+} from "../../services/modify.service";
+/* Views */
+import AddExperienceView from "../../views/add-experience/add-experience.view";
+import AddFormationView from "../../views/add-formation/add-formartion.view";
+import AddSkillsView from "../../views/add-skills/add-skills.view";
 import "./modify.css";
 
 const ModidyCv: React.FC = () => {
   const [segment, setSegment] = useState<any>("skill");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [showToast, setShowToast] = useState<boolean>(false);
+
+  const setSkill = (data: skill) => {
+    setLoading(true);
+    setSkills(data)
+      .then(() => {
+        setLoading(false);
+        setShowToast(true);
+      })
+      .catch((err) => {
+        setLoading(false);
+      });
+  };
+
+  const setExperience = (data: experience) => {
+    setLoading(true);
+    setExperiences(data)
+      .then(() => {
+        setLoading(false);
+        setShowToast(true);
+      })
+      .catch((err) => {
+        setLoading(false);
+      });
+  };
+
+  const setFormation = (data: formation) => {
+    setLoading(true);
+    setFormations(data)
+      .then(() => {
+        setLoading(false);
+        setShowToast(true);
+      })
+      .catch((err) => {
+        setLoading(false);
+      });
+  };
 
   return (
     <IonPage>
@@ -66,104 +113,24 @@ const ModidyCv: React.FC = () => {
         <div className="container-forms">
           {/* Formulario Habilidades */}
           {segment === "skill" && (
-            <IonRow className="form-container">
-              <IonCol size="12" className="form-item">
-                <IonItem>
-                  <IonLabel position="floating">Nombre de habilidad</IonLabel>
-                  <IonInput value={""}></IonInput>
-                </IonItem>
-              </IonCol>
-              <IonCol size="12">
-                <IonLabel>Porcentaje</IonLabel>
-                <IonItem>
-                  <IonRange min={20} max={80} pin color="tertiary">
-                    <IonIcon size="small" slot="start" icon={sunny} />
-                    <IonIcon size="small" slot="end" icon={sunny} />
-                  </IonRange>
-                </IonItem>
-              </IonCol>
-              <IonCol className="save-button-container">
-                <IonButton color="tertiary">Guardar</IonButton>
-              </IonCol>
-            </IonRow>
+            <AddSkillsView loading={loading} setSkill={setSkill} />
           )}
           {/* Formulario Experiencia */}
           {segment === "experience" && (
-            <IonRow className="form-container">
-              <IonCol size="12" className="form-item">
-                <IonItem>
-                  <IonLabel position="floating">Puesto</IonLabel>
-                  <IonInput value={""}></IonInput>
-                </IonItem>
-              </IonCol>
-              <IonCol size="12" className="form-item">
-                <IonItem>
-                  <IonLabel position="floating">Empresa</IonLabel>
-                  <IonInput value={""}></IonInput>
-                </IonItem>
-              </IonCol>
-              <IonCol size="12" className="form-item">
-                <IonItem>
-                  <IonLabel position="floating">Descripcion</IonLabel>
-                  <IonTextarea value={""}></IonTextarea>
-                </IonItem>
-              </IonCol>
-              <IonCol size="12" className="form-item">
-                <IonItem>
-                  <IonLabel position="floating">Comienzo</IonLabel>
-                  <IonDatetime></IonDatetime>
-                </IonItem>
-              </IonCol>
-              <IonCol size="12" className="form-item">
-                <IonItem>
-                  <IonLabel position="floating">Fin</IonLabel>
-                  <IonDatetime></IonDatetime>
-                </IonItem>
-              </IonCol>
-              <IonCol size="12" className="save-button-container">
-                <IonButton color="tertiary">Guardar</IonButton>
-              </IonCol>
-            </IonRow>
+            <AddExperienceView
+              loading={loading}
+              setExperience={setExperience}
+            />
           )}
           {/* Formulario Education */}
-          {segment === "education" && (
-            <IonRow className="form-container">
-              <IonCol size="12" className="form-item">
-                <IonItem>
-                  <IonLabel position="floating">Título</IonLabel>
-                  <IonInput value={""}></IonInput>
-                </IonItem>
-              </IonCol>
-              <IonCol size="12" className="form-item">
-                <IonItem>
-                  <IonLabel position="floating">Centro</IonLabel>
-                  <IonInput value={""}></IonInput>
-                </IonItem>
-              </IonCol>
-              <IonCol size="12" className="form-item">
-                <IonItem>
-                  <IonLabel position="floating">Descripcion</IonLabel>
-                  <IonTextarea value={""}></IonTextarea>
-                </IonItem>
-              </IonCol>
-              <IonCol size="12" className="form-item">
-                <IonItem>
-                  <IonLabel position="floating">Comienzo</IonLabel>
-                  <IonDatetime></IonDatetime>
-                </IonItem>
-              </IonCol>
-              <IonCol size="12" className="form-item">
-                <IonItem>
-                  <IonLabel position="floating">Fin</IonLabel>
-                  <IonDatetime></IonDatetime>
-                </IonItem>
-              </IonCol>
-              <IonCol className="save-button-container form-item" >
-                <IonButton color="tertiary">Guardar</IonButton>
-              </IonCol>
-            </IonRow>
-          )}
+          {segment === "education" && <AddFormationView loading={loading} setFormation={setFormation}/>}
         </div>
+        <IonToast
+          isOpen={showToast}
+          onDidDismiss={() => setShowToast(false)}
+          message="¡Cambio realizado con éxito!"
+          duration={2000}
+        />
       </IonContent>
     </IonPage>
   );
