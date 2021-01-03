@@ -1,0 +1,23 @@
+.header {
+  width: 100%;
+  height: 130px;
+  background: rgb(16, 3, 83);
+
+  &.dashboard {
+    background: linear-gradient(
+      90deg,
+      rgba(16, 3, 83, 1) 0%,
+      rgba(36, 124, 213, 1) 56%,
+      rgba(61, 212, 243, 1) 100%
+    );
+  }
+  &.add {
+    background: #f24863;
+  }
+  &.account {
+    background: #00d6bf;
+  }
+  &.notification {
+    background: #b22e9b;
+  }
+}

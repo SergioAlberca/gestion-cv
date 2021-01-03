@@ -1,5 +1,3 @@
-import Menu from "./components/Menu";
-import Page from "./pages/Page";
 import React from "react";
 import { IonApp, IonRouterOutlet, IonSplitPane } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
@@ -23,9 +21,12 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+
 import NotificationsPage from "./pages/notifications/notifications.page";
-import ModidyCv from "./pages/modify-cv/modify-cv";
-import AccountPage from "./pages/account/account";
+import AddPage from "./pages/modify-cv/add.page";
+import AccountPage from "./pages/account/account.page";
+import Menu from "./components/menu/Menu";
+import Dashboard from "./pages/dashboard/dashboard";
 
 const App: React.FC = () => {
   return (
@@ -34,9 +35,9 @@ const App: React.FC = () => {
         <IonSplitPane contentId="main">
           <Menu />
           <IonRouterOutlet id="main">
-            <Route path="/dashboard" component={Page} exact />
+            <Route path="/dashboard" component={Dashboard} exact />
             <Route path="/notifications" component={NotificationsPage} exact />
-            <Route path="/modify" component={ModidyCv} exact />
+            <Route path="/add" component={AddPage} exact />
             <Route path="/account" component={AccountPage} exact />
             <Redirect from="/" to="/dashboard" exact />
           </IonRouterOutlet>

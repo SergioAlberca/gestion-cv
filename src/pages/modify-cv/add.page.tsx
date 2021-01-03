@@ -1,14 +1,9 @@
 import {
   IonCol,
   IonContent,
-  IonHeader,
   IonIcon,
-  IonLabel,
-  IonMenuButton,
   IonPage,
   IonRow,
-  IonSegment,
-  IonSegmentButton,
   IonToast,
 } from "@ionic/react";
 import { create } from "ionicons/icons";
@@ -22,15 +17,21 @@ import {
   setExperiences,
   setFormations,
   setSkills,
-} from "../../services/modify.service";
+} from "../../services/add.service";
 /* Views */
 import AddExperienceView from "../../views/add-experience/add-experience.view";
 import AddFormationView from "../../views/add-formation/add-formartion.view";
 import AddSkillsView from "../../views/add-skills/add-skills.view";
-import "./modify.css";
+/* Css */
+import "./add.page.scss";
+/* Components */
+import Header from "../../components/header/header.component";
+import Tabs from "../../components/tabs/tabs.component";
+import { dataSegmentAddPage, typeKeySections, typePage } from "../../constants/constants";
 
-const ModidyCv: React.FC = () => {
-  const [segment, setSegment] = useState<any>("skill");
+const AddPage: React.FC = () => {
+
+  const [segment, setSegment] = useState<any>(typeKeySections.skill);
   const [loading, setLoading] = useState<boolean>(false);
   const [showToast, setShowToast] = useState<boolean>(false);
 
@@ -72,58 +73,38 @@ const ModidyCv: React.FC = () => {
 
   return (
     <IonPage>
-      {" "}
-      <IonHeader>
-        <div className="modify-header">
-          <IonRow>
-            <IonCol size="4" className="menu-icon-container">
-              <IonMenuButton className="menu-icon" />
-            </IonCol>
-            <IonCol size="4" className="logo-icon-container">
-              <IonIcon md={create} className="dashboard-item-icon"></IonIcon>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol size="12" className="title-container">
-              Sección Añadir
-            </IonCol>
-          </IonRow>
-        </div>
-      </IonHeader>
-      <IonContent fullscreen>
+      <Header
+        type={typePage.add}
+        title="Añadir Elementos"
+        logo={<IonIcon md={create} className="dashboard-item-icon"></IonIcon>}
+      ></Header>
+      <IonContent>
         <IonRow>
           <IonCol size="12">
-            <IonSegment
+            <Tabs
+              data={dataSegmentAddPage}
+              segment={segment}
+              setSegment={setSegment}
               color="tertiary"
-              value={segment}
-              onIonChange={(e) => setSegment(e.detail.value)}
-            >
-              <IonSegmentButton value="skill">
-                <IonLabel>Habilidades</IonLabel>
-              </IonSegmentButton>
-              <IonSegmentButton value="experience">
-                <IonLabel>Experiencia</IonLabel>
-              </IonSegmentButton>
-              <IonSegmentButton value="education">
-                <IonLabel>Formación</IonLabel>
-              </IonSegmentButton>
-            </IonSegment>
+            ></Tabs>
           </IonCol>
         </IonRow>
         <div className="container-forms">
           {/* Formulario Habilidades */}
-          {segment === "skill" && (
+          {segment === typeKeySections.skill && (
             <AddSkillsView loading={loading} setSkill={setSkill} />
           )}
           {/* Formulario Experiencia */}
-          {segment === "experience" && (
+          {segment === typeKeySections.experience && (
             <AddExperienceView
               loading={loading}
               setExperience={setExperience}
             />
           )}
           {/* Formulario Education */}
-          {segment === "education" && <AddFormationView loading={loading} setFormation={setFormation}/>}
+          {segment === typeKeySections.education && (
+            <AddFormationView loading={loading} setFormation={setFormation} />
+          )}
         </div>
         <IonToast
           isOpen={showToast}
@@ -135,4 +116,4 @@ const ModidyCv: React.FC = () => {
     </IonPage>
   );
 };
-export default ModidyCv;
+export default AddPage;

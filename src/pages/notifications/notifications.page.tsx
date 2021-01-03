@@ -2,17 +2,15 @@ import {
   IonCard,
   IonCardContent,
   IonCardTitle,
-  IonCol,
   IonContent,
-  IonHeader,
   IonIcon,
-  IonMenuButton,
   IonPage,
-  IonRow,
 } from "@ionic/react";
 import { notifications, close } from "ionicons/icons";
 import React from "react";
-import "./notifications.page.css";
+import Header from "../../components/header/header.component";
+import { typePage } from "../../constants/constants";
+import "./notifications.page.scss";
 
 const NotificationsPage: React.FC = () => {
   const truncateDescription = (text: string) => {
@@ -21,23 +19,13 @@ const NotificationsPage: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <div className="notification-header-container">
-          <IonRow>
-            <IonCol size="4" className="menu-icon-container">
-              <IonMenuButton className="menu-icon" />
-            </IonCol>
-            <IonCol size="4" className="logo-icon-container">
-            <IonIcon md={notifications} className="dashboard-item-icon"></IonIcon>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol size="12" className="title-container">
-              Centro de notificaciones
-            </IonCol>
-          </IonRow>
-        </div>
-      </IonHeader>
+      <Header
+        type={typePage.notificaction}
+        title="Centro de notificaciones"
+        logo={
+          <IonIcon md={notifications} className="dashboard-item-icon"></IonIcon>
+        }
+      ></Header>
       <IonContent fullscreen>
         <IonCard class="notification-item">
           <IonIcon

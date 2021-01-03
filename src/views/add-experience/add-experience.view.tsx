@@ -32,8 +32,8 @@ function AddExperienceView(props: any) {
       company: company,
       descriptionEmployment: descriptionEmployment,
       employment: employment,
-      since: formatDate(since, "dd/MM/yyyy"),
-      until: formatDate(until, "dd/MM/yyyy"),
+      since: formatDate(new Date(since), "dd/MM/yyyy"),
+      until: formatDate(new Date(until), "dd/MM/yyyy"),
     };
     return data;
   };

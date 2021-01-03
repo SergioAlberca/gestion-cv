@@ -4,46 +4,32 @@ import {
   IonCardHeader,
   IonCol,
   IonContent,
-  IonHeader,
   IonIcon,
-  IonMenuButton,
   IonPage,
   IonRow,
 } from "@ionic/react";
-import { analytics, create, notifications, personCircle } from "ionicons/icons";
+import { analytics, create, personCircle } from "ionicons/icons";
 import React from "react";
-import "./Page.css";
-import logo from "../assets/images/logo.svg";
+/* Css */
+import "./dashboard.css";
+/* Logo */
+import logo from "../../assets/images/logo.svg";
+/* History */
 import { useHistory } from "react-router-dom";
+/* Components */
+import Header from "../../components/header/header.component";
+import { typePage } from "../../constants/constants";
 
-const Page: React.FC = () => {
+const Dashboard: React.FC = () => {
   let history = useHistory();
   return (
     <IonPage>
-      <IonHeader>
-        <div className="dashboard-header">
-          <IonRow>
-            <IonCol size="4" className="menu-icon-container">
-              <IonMenuButton className="menu-icon" />
-            </IonCol>
-            <IonCol size="4" className="logo-icon-container">
-              <img src={logo} alt="" className="logo" />
-            </IonCol>
-            <IonCol size="4" className="notification-icon-container">
-              <IonIcon
-                md={notifications}
-                className="notification-icon"
-                onClick={() => history.push("/notifications")}
-              ></IonIcon>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol size="12" className="title-container">
-              Gestion Cv
-            </IonCol>
-          </IonRow>
-        </div>
-      </IonHeader>
+      <Header
+        type={typePage.dashboard}
+        title="Gestión Cv"
+        pushRoute={() => history.push("/notifications")}
+        logo={logo}
+      ></Header>
       <IonContent fullscreen>
         <div className="dashboard-container">
           <IonRow>
@@ -59,7 +45,10 @@ const Page: React.FC = () => {
               </IonCard>
             </IonCol>
             <IonCol size="6">
-              <IonCard className="dashboard-item dashboard-item-2" onClick={() => history.push("/account")}>
+              <IonCard
+                className="dashboard-item dashboard-item-2"
+                onClick={() => history.push("/account")}
+              >
                 <IonCardHeader>
                   <IonIcon
                     md={personCircle}
@@ -72,7 +61,10 @@ const Page: React.FC = () => {
           </IonRow>
           <IonRow>
             <IonCol size="12">
-              <IonCard className="dashboard-item-3" onClick={() => history.push("/modify")}>
+              <IonCard
+                className="dashboard-item-3"
+                onClick={() => history.push("/add")}
+              >
                 <IonCardHeader>
                   <IonIcon
                     md={create}
@@ -91,4 +83,4 @@ const Page: React.FC = () => {
   );
 };
 
-export default Page;
+export default Dashboard;

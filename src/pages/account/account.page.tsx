@@ -5,15 +5,11 @@ import {
   IonChip,
   IonCol,
   IonContent,
-  IonHeader,
   IonIcon,
   IonLabel,
   IonLoading,
-  IonMenuButton,
   IonPage,
   IonRow,
-  IonSegment,
-  IonSegmentButton,
 } from "@ionic/react";
 import {
   personCircle,
@@ -21,7 +17,7 @@ import {
   documentOutline,
 } from "ionicons/icons";
 import React, { useEffect, useState } from "react";
-import "./account.css";
+import "./account.page.scss";
 /* Plugins */
 import { Chooser } from "@ionic-native/chooser";
 import { Plugins, CameraResultType } from "@capacitor/core";
@@ -34,21 +30,20 @@ import {
   getImageProfile,
   setNameCvFile,
   setNameProfile,
-} from "../../services/modify.service";
+} from "../../services/add.service";
+import Header from "../../components/header/header.component";
+import Tabs from "../../components/tabs/tabs.component";
+import {
+  dataSegmentAccountPage,
+  messageInfoCvFileAccountPage,
+  messageInfoProfileAccountPage,
+  typeKeySections,
+  typePage,
+} from "../../constants/constants";
 
 const AccountPage: React.FC = () => {
-  const messageInfoCvFile = {
-    message:
-      "Actualiza tu plantilla de CV en formato pdf para que esté disponible en tu web online y otros usuarios puedan descargarlo.",
-    title: "Actualiza tu plantilla de CV",
-  };
-  const messageInfoProfile = {
-    message:
-      "Actualiza tu imagen de perfil para que esté disponible en tu CV online.",
-    title: "Actualiza tu imagen de perfil",
-  };
   const { Camera } = Plugins;
-  const [segment, setSegment] = useState<any>("image");
+  const [segment, setSegment] = useState<any>(typeKeySections.image);
   const [showInfo, setShowInfo] = useState<boolean>(false);
   const [filesData, setFilesData] = useState<any>({});
   const [urlProfile, setUrlProfile] = useState<string>("");
@@ -116,52 +111,35 @@ const AccountPage: React.FC = () => {
   }
 
   const getInfo = (type: string) => {
-    return type === "image" ? messageInfoProfile : messageInfoCvFile;
+    return type === typeKeySections.image
+      ? messageInfoProfileAccountPage
+      : messageInfoCvFileAccountPage;
   };
 
   return (
     <IonPage>
-      <IonHeader>
-        <div className="account-header">
-          <IonLoading
-            isOpen={showLoading}
-            onDidDismiss={() => setShowLoading(false)}
-            message={"Cargando..."}
-          />
-          <IonRow>
-            <IonCol size="4" className="menu-icon-container">
-              <IonMenuButton className="menu-icon" />
-            </IonCol>
-            <IonCol size="4" className="logo-icon-container">
-              <IonIcon
-                md={personCircle}
-                className="dashboard-item-icon"
-              ></IonIcon>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol size="12" className="title-container">
-              Cuenta
-            </IonCol>
-          </IonRow>
-        </div>
-      </IonHeader>
+      <IonLoading
+        isOpen={showLoading}
+        onDidDismiss={() => setShowLoading(false)}
+        message={"Cargando..."}
+      />
+      <Header
+        type={typePage.account}
+        title="Cuenta"
+        logo={
+          <IonIcon md={personCircle} className="dashboard-item-icon"></IonIcon>
+        }
+      ></Header>
       <IonContent fullscreen>
         <div>
           <IonRow>
             <IonCol size="12">
-              <IonSegment
+              <Tabs
+                data={dataSegmentAccountPage}
+                segment={segment}
+                setSegment={setSegment}
                 color="tertiary"
-                value={segment}
-                onIonChange={(e) => setSegment(e.detail.value)}
-              >
-                <IonSegmentButton value="image">
-                  <IonLabel>Perfil</IonLabel>
-                </IonSegmentButton>
-                <IonSegmentButton value="file">
-                  <IonLabel>Cv en pdf</IonLabel>
-                </IonSegmentButton>
-              </IonSegment>
+              ></Tabs>
             </IonCol>
           </IonRow>
           <IonRow>
@@ -173,7 +151,7 @@ const AccountPage: React.FC = () => {
             </IonCol>
           </IonRow>
           {/* Segmento Perfil */}
-          {segment === "image" && (
+          {segment === typeKeySections.image && (
             <IonRow>
               <IonCol size="12" className="avatar-container">
                 <IonAvatar className="avatar-image">
@@ -188,7 +166,7 @@ const AccountPage: React.FC = () => {
             </IonRow>
           )}
           {/* Segmento Cv */}
-          {segment === "file" && (
+          {segment === typeKeySections.file && (
             <IonRow>
               <IonCol size="12" className="avatar-container">
                 <IonAvatar className="avatar-image">

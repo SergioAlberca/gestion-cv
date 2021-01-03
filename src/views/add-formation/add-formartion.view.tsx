@@ -27,8 +27,8 @@ function AddFormationView(props: any) {
       category: category,
       institute: institute,
       title: title,
-      since: formatDate(since, "dd/MM/yyyy"),
-      until: formatDate(until, "dd/MM/yyyy"),
+      since: formatDate(new Date(since), "dd/MM/yyyy"),
+      until: formatDate(new Date(until), "dd/MM/yyyy"),
     };
 
     return data;

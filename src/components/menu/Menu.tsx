@@ -16,7 +16,8 @@ import {
   notifications,
   create,
   personCircle,
-  podiumOutline
+  podiumOutline,
+  add
 } from "ionicons/icons";
 import "./Menu.css";
 
@@ -41,10 +42,10 @@ const appPages: AppPage[] = [
     mdIcon: notifications,
   },
   {
-    title: "Modificar",
-    url: "/modify",
-    iosIcon: create,
-    mdIcon: create,
+    title: "Añadir",
+    url: "/add",
+    iosIcon: add,
+    mdIcon: add,
   },
   {
     title: "Cuenta",
