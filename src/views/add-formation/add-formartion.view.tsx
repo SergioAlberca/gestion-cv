@@ -9,18 +9,26 @@ import {
   IonTextarea,
   IonSpinner,
 } from "@ionic/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 /* Inrerfaces */
-import { formation } from "../../interfaces/formation.skill";
+import { AddFormationViewProps, formation } from "../../interfaces/formation.interface";
 /* Utils */
 import { formatDate } from "../../utils/date-utils";
 
-function AddFormationView(props: any) {
+function AddFormationView(props: AddFormationViewProps) {
   const [category, setCategory] = useState<string>("");
   const [institute, setInstitute] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [since, setSince] = useState<string>("");
   const [until, setUntil] = useState<string>("");
+
+  useEffect(() => {
+    if (props.data && props.from && props.from === "modify") {
+      setCategory(props.data.category);
+      setInstitute(props.data.category);
+      setTitle(props.data.title);
+    }
+  }, []);
 
   const buildData = (): formation => {
     let data = {

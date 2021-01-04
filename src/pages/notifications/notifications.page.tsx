@@ -12,7 +12,7 @@ import Header from "../../components/header/header.component";
 import { typePage } from "../../constants/constants";
 import "./notifications.page.scss";
 
-const NotificationsPage: React.FC = () => {
+const NotificationsPage = () => {
   const truncateDescription = (text: string) => {
     return text.slice(0, 160) + "...";
   };

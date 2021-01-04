@@ -10,13 +10,13 @@ import {
   IonSpinner,
 } from "@ionic/react";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 /* Interfaces */
-import { experience } from "../../interfaces/experience.interface";
+import { AddExperienceViewProps, experience } from "../../interfaces/experience.interface";
 /* Utils */
 import { formatDate } from "../../utils/date-utils";
 
-function AddExperienceView(props: any) {
+function AddExperienceView(props: AddExperienceViewProps) {
   const [city, setCity] = useState<string>("");
   const [company, setCompany] = useState<string>("");
   const [descriptionEmployment, setDescriptionEmployment] = useState<string>(
@@ -25,6 +25,18 @@ function AddExperienceView(props: any) {
   const [employment, setEmployment] = useState<string>("");
   const [since, setSince] = useState<string>("");
   const [until, setUntil] = useState<string>("");
+
+  useEffect(() => {
+    console.log(props);
+    if (props.data && props.from && props.from === "modify") {
+      setCity(props.data.city);
+      setCompany(props.data.company);
+      setDescriptionEmployment(props.data.descriptionEmployment);
+      setEmployment(props.data.employment);
+      setSince(props.data.since);
+      setUntil(props.data.until);
+    }
+  }, []);
 
   const buildData = (): experience => {
     let data = {

@@ -41,7 +41,7 @@ import {
   typePage,
 } from "../../constants/constants";
 
-const AccountPage: React.FC = () => {
+const AccountPage = () => {
   const { Camera } = Plugins;
   const [segment, setSegment] = useState<any>(typeKeySections.image);
   const [showInfo, setShowInfo] = useState<boolean>(false);

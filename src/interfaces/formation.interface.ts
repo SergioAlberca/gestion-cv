@@ -5,3 +5,10 @@ export interface formation {
   since: string;
   until: string;
 }
+
+export interface AddFormationViewProps {
+  data?: any;
+  from?: string;
+  loading: boolean;
+  setFormation: any;
+}

@@ -1,7 +1,7 @@
 import firebase from "firebase";
 import { firestore, storage } from "../config/firebase.config";
 import { experience } from "../interfaces/experience.interface";
-import { formation } from "../interfaces/formation.skill";
+import { formation } from "../interfaces/formation.interface";
 import { skill } from "../interfaces/skills.interface";
 
 export function setSkills(skill: skill): Promise<any> {
@@ -11,7 +11,7 @@ export function setSkills(skill: skill): Promise<any> {
       .doc("skills")
       .update({
         habilidades: firebase.firestore.FieldValue.arrayUnion({
-          label: skill.name,
+          label: skill.label,
           percentage: skill.percentage,
           category: skill.category,
         }),

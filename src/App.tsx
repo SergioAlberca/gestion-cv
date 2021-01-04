@@ -23,12 +23,13 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 
 import NotificationsPage from "./pages/notifications/notifications.page";
-import AddPage from "./pages/modify-cv/add.page";
+import AddPage from "./pages/add/add.page";
 import AccountPage from "./pages/account/account.page";
 import Menu from "./components/menu/Menu";
 import Dashboard from "./pages/dashboard/dashboard";
+import ModifyPage from "./pages/modify/modify.page";
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <IonApp>
       <IonReactRouter>
@@ -39,6 +40,7 @@ const App: React.FC = () => {
             <Route path="/notifications" component={NotificationsPage} exact />
             <Route path="/add" component={AddPage} exact />
             <Route path="/account" component={AccountPage} exact />
+            <Route path="/modify" component={ModifyPage} exact />
             <Redirect from="/" to="/dashboard" exact />
           </IonRouterOutlet>
         </IonSplitPane>

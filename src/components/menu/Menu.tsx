@@ -14,10 +14,10 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import {
   notifications,
-  create,
   personCircle,
   podiumOutline,
-  add
+  add,
+  create
 } from "ionicons/icons";
 import "./Menu.css";
 
@@ -53,9 +53,15 @@ const appPages: AppPage[] = [
     iosIcon: personCircle,
     mdIcon: personCircle,
   },
+  {
+    title: "Modificar",
+    url: "/modify",
+    iosIcon: create,
+    mdIcon: create,
+  },
 ];
 
-const Menu: React.FC = () => {
+const Menu = () => {
   const location = useLocation();
 
   return (

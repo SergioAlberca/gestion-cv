@@ -6,12 +6,12 @@ import {
   IonRow,
   IonToast,
 } from "@ionic/react";
-import { create } from "ionicons/icons";
+import { add } from "ionicons/icons";
 import React, { useState } from "react";
 /* Interfaces */
 import { skill } from "../../interfaces/skills.interface";
 import { experience } from "../../interfaces/experience.interface";
-import { formation } from "../../interfaces/formation.skill";
+import { formation } from "../../interfaces/formation.interface";
 /* Services */
 import {
   setExperiences,
@@ -27,10 +27,14 @@ import "./add.page.scss";
 /* Components */
 import Header from "../../components/header/header.component";
 import Tabs from "../../components/tabs/tabs.component";
-import { dataSegmentAddPage, typeKeySections, typePage } from "../../constants/constants";
+/* Constans */
+import {
+  dataSegmentAddPage,
+  typeKeySections,
+  typePage,
+} from "../../constants/constants";
 
-const AddPage: React.FC = () => {
-
+const AddPage = () => {
   const [segment, setSegment] = useState<any>(typeKeySections.skill);
   const [loading, setLoading] = useState<boolean>(false);
   const [showToast, setShowToast] = useState<boolean>(false);
@@ -76,7 +80,7 @@ const AddPage: React.FC = () => {
       <Header
         type={typePage.add}
         title="Añadir Elementos"
-        logo={<IonIcon md={create} className="dashboard-item-icon"></IonIcon>}
+        logo={<IonIcon md={add} className="dashboard-item-icon"></IonIcon>}
       ></Header>
       <IonContent>
         <IonRow>

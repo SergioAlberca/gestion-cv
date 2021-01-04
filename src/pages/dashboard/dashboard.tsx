@@ -20,7 +20,7 @@ import { useHistory } from "react-router-dom";
 import Header from "../../components/header/header.component";
 import { typePage } from "../../constants/constants";
 
-const Dashboard: React.FC = () => {
+const Dashboard = () => {
   let history = useHistory();
   return (
     <IonPage>
@@ -34,14 +34,17 @@ const Dashboard: React.FC = () => {
         <div className="dashboard-container">
           <IonRow>
             <IonCol size="6">
-              <IonCard className="dashboard-item dashboard-item-1">
+              <IonCard
+                className="dashboard-item dashboard-item-1"
+                onClick={() => history.push("/modify")}
+              >
                 <IonCardHeader>
                   <IonIcon
                     md={analytics}
                     className="dashboard-item-icon"
                   ></IonIcon>
                 </IonCardHeader>
-                <IonCardContent>Estadísticas</IonCardContent>
+                <IonCardContent>Modificar</IonCardContent>
               </IonCard>
             </IonCol>
             <IonCol size="6">
@@ -72,7 +75,7 @@ const Dashboard: React.FC = () => {
                   ></IonIcon>
                 </IonCardHeader>
                 <IonCardContent>
-                  <h3>Modificar CV</h3>
+                  <h3>Añadir</h3>
                 </IonCardContent>
               </IonCard>
             </IonCol>

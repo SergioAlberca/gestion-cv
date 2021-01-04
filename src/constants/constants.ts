@@ -3,6 +3,7 @@ export const typePage = {
   add: "add",
   account: "account",
   notificaction: "notification",
+  modify: 'modify'
 };
 
 export const typeKeySections = {

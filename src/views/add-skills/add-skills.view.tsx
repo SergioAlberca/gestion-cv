@@ -12,18 +12,26 @@ import {
   IonSpinner,
 } from "@ionic/react";
 import { sunny } from "ionicons/icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 /* Interfaces */
-import { skill } from "../../interfaces/skills.interface";
+import { AddSkillsViewProps, skill } from "../../interfaces/skills.interface";
 
-function AddSkillsView(props: any) {
+function AddSkillsView(props: AddSkillsViewProps) {
   const [skillName, setSkillName] = useState<string>("");
   const [skillPercentage, setSkillPercentage] = useState<any>(0);
   const [category, setCategory] = useState<string>("frameworks");
 
+  useEffect(() => {
+    if (props.data && props.from && props.from === "modify") {
+      setSkillName(props.data.label);
+      setSkillPercentage(props.data.percentage);
+      setCategory(props.data.category);
+    }
+  }, []);
+
   const buildData = (): skill => {
     let data = {
-      name: skillName,
+      label: skillName,
       percentage: skillPercentage,
       category: category,
     };

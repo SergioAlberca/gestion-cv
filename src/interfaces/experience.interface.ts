@@ -6,3 +6,10 @@ export interface experience {
   since: string;
   until: string;
 }
+
+export interface AddExperienceViewProps {
+  data?: any;
+  from?: string;
+  loading: boolean;
+  setExperience: any;
+}
