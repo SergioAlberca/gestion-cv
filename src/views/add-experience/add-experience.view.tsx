@@ -27,7 +27,6 @@ function AddExperienceView(props: AddExperienceViewProps) {
   const [until, setUntil] = useState<string>("");
 
   useEffect(() => {
-    console.log(props);
     if (props.data && props.from && props.from === "modify") {
       setCity(props.data.city);
       setCompany(props.data.company);

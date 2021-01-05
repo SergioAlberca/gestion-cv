@@ -42,11 +42,7 @@ const AccountPage = () => {
   const [showLoading, setShowLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log("entro");
     getData();
-    return () => {
-      console.log("jajajajajj");
-    };
   }, []);
 
   async function getData() {

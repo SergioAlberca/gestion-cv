@@ -96,7 +96,6 @@ const ModifyPage = () => {
   };
 
   const setSkill = (data: any) => {
-    console.log("entro");
     setLoadingModal(true);
     let values: Array<any> = [];
     skill.habilidades.map((item, i) => {
