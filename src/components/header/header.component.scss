@@ -24,3 +24,44 @@
     background: #ff8731;
   }
 }
+
+.menu-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.menu-icon {
+  color: white;
+  font-size: 59px;
+}
+
+.back-icon {
+  color: white;
+  font-size: 30px;
+  padding: 5px;
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+}
+
+.notification-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.notification-icon {
+  font-size: 30px;
+  color: white;
+  padding: 10px;
+}
+
+.logo {
+  width: 50%;
+}

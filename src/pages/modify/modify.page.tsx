@@ -26,12 +26,12 @@ import {
   updateSkills,
 } from "../../services/modify.service";
 import ModifyModal from "../../modals/modify.modal";
-import { useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import SkeletonList from "../../components/skeletonLoading/skeletonListLoading.component";
 import Tabs from "../../components/tabs/tabs.component";
 
 const ModifyPage = () => {
-  const location = useLocation();
+  let history = useHistory();
   const [formation, setFormation] = useState<any>(null);
   const [experience, setExperience] = useState<any>(null);
   const [skill, setSkills] = useState<any>(null);
@@ -46,18 +46,6 @@ const ModifyPage = () => {
   useEffect(() => {
     getData();
   }, []);
-
-  useEffect(() => {
-    if (location.pathname === "/modify") {
-      getData();
-    }
-  }, [location]);
-
-  useEffect(() => {
-    if (!showModal) {
-      getData();
-    }
-  }, [showModal]);
 
   const getData = () => {
     setLoadingSkeleton(true);
@@ -108,7 +96,7 @@ const ModifyPage = () => {
   };
 
   const setSkill = (data: any) => {
-    console.log('entro')
+    console.log("entro");
     setLoadingModal(true);
     let values: Array<any> = [];
     skill.habilidades.map((item, i) => {
@@ -180,6 +168,7 @@ const ModifyPage = () => {
         type={typePage.modify}
         title="Modificar"
         logo={<IonIcon md={create} className="dashboard-item-icon"></IonIcon>}
+        pushRoute={() => history.goBack()}
       ></Header>
       {loadingSkeleton && (
         <IonContent>
@@ -252,7 +241,11 @@ const ModifyPage = () => {
               </IonCol>
             </IonRow>
           )}
-          <IonModal isOpen={showModal} cssClass="my-custom-class">
+          <IonModal
+            isOpen={showModal}
+            cssClass="my-custom-class"
+            onDidDismiss={getData}
+          >
             <ModifyModal
               type={checkType()}
               loading={loadingModal}

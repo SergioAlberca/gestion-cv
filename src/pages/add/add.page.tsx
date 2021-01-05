@@ -33,8 +33,10 @@ import {
   typeKeySections,
   typePage,
 } from "../../constants/constants";
+import { useHistory } from "react-router-dom";
 
 const AddPage = () => {
+  let history = useHistory();
   const [segment, setSegment] = useState<any>(typeKeySections.skill);
   const [loading, setLoading] = useState<boolean>(false);
   const [showToast, setShowToast] = useState<boolean>(false);
@@ -81,6 +83,7 @@ const AddPage = () => {
         type={typePage.add}
         title="Añadir Elementos"
         logo={<IonIcon md={add} className="dashboard-item-icon"></IonIcon>}
+        pushRoute={() => history.goBack()}
       ></Header>
       <IonContent>
         <IonRow>

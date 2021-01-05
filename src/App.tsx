@@ -1,5 +1,5 @@
 import React from "react";
-import { IonApp, IonRouterOutlet, IonSplitPane } from "@ionic/react";
+import { IonApp, IonRouterOutlet } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route } from "react-router-dom";
 
@@ -33,17 +33,15 @@ const App = () => {
   return (
     <IonApp>
       <IonReactRouter>
-        <IonSplitPane contentId="main">
-          <Menu />
-          <IonRouterOutlet id="main">
-            <Route path="/dashboard" component={Dashboard} exact />
-            <Route path="/notifications" component={NotificationsPage} exact />
-            <Route path="/add" component={AddPage} exact />
-            <Route path="/account" component={AccountPage} exact />
-            <Route path="/modify" component={ModifyPage} exact />
-            <Redirect from="/" to="/dashboard" exact />
-          </IonRouterOutlet>
-        </IonSplitPane>
+        <Menu />
+        <IonRouterOutlet id="main">
+          <Route path="/dashboard" component={Dashboard} exact />
+          <Route path="/notifications" component={NotificationsPage} exact />
+          <Route path="/add" component={AddPage} exact />
+          <Route path="/account" component={AccountPage} exact />
+          <Route path="/modify" component={ModifyPage} exact />
+          <Redirect from="/" to="/dashboard" exact />
+        </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
   );

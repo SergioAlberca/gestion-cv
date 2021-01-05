@@ -11,7 +11,7 @@ import {
 import { analytics, create, personCircle } from "ionicons/icons";
 import React from "react";
 /* Css */
-import "./dashboard.css";
+import "./dashboard.scss";
 /* Logo */
 import logo from "../../assets/images/logo.svg";
 /* History */
@@ -29,6 +29,7 @@ const Dashboard = () => {
         title="Gestión Cv"
         pushRoute={() => history.push("/notifications")}
         logo={logo}
+        menu={true}
       ></Header>
       <IonContent fullscreen>
         <div className="dashboard-container">

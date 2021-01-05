@@ -8,14 +8,14 @@ import {
 } from "@ionic/react";
 import { notifications, close } from "ionicons/icons";
 import React from "react";
+import { useHistory } from "react-router-dom";
 import Header from "../../components/header/header.component";
 import { typePage } from "../../constants/constants";
+import { truncate } from "../../utils/functions-utils";
 import "./notifications.page.scss";
 
 const NotificationsPage = () => {
-  const truncateDescription = (text: string) => {
-    return text.slice(0, 160) + "...";
-  };
+  let history = useHistory();
 
   return (
     <IonPage>
@@ -25,6 +25,7 @@ const NotificationsPage = () => {
         logo={
           <IonIcon md={notifications} className="dashboard-item-icon"></IonIcon>
         }
+        pushRoute={() => history.goBack()}
       ></Header>
       <IonContent fullscreen>
         <IonCard class="notification-item">
@@ -37,8 +38,9 @@ const NotificationsPage = () => {
             Notificacion 1
           </IonCardTitle>
           <IonCardContent>
-            {truncateDescription(
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex sint sapiente corrupti, facilis voluptates dolores illum dicta deleniti nisi"
+            {truncate(
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex sint sapiente corrupti, facilis voluptates dolores illum dicta deleniti nisi",
+              160
             )}
             <p className="notification-item-date">29/11/2020</p>
           </IonCardContent>

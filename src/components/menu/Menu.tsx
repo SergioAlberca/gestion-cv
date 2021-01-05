@@ -11,13 +11,13 @@ import {
 } from "@ionic/react";
 
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import {
   notifications,
   personCircle,
   podiumOutline,
   add,
-  create
+  create,
 } from "ionicons/icons";
 import "./Menu.css";
 
@@ -63,6 +63,7 @@ const appPages: AppPage[] = [
 
 const Menu = () => {
   const location = useLocation();
+  let history = useHistory();
 
   return (
     <IonMenu contentId="main" type="overlay">
@@ -77,7 +78,8 @@ const Menu = () => {
                   className={
                     location.pathname === appPage.url ? "selected" : ""
                   }
-                  routerLink={appPage.url}
+                  // routerLink={appPage.url}
+                  onClick={() => history.push(appPage.url)}
                   routerDirection="none"
                   lines="none"
                   detail={false}

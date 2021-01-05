@@ -5,7 +5,7 @@ import {
   IonMenuButton,
   IonIcon,
 } from "@ionic/react";
-import { notifications } from "ionicons/icons";
+import { arrowBack, notifications } from "ionicons/icons";
 import React from "react";
 import "./header.component.scss";
 
@@ -14,6 +14,7 @@ interface headerProps {
   title: string;
   logo: any;
   pushRoute?: any;
+  menu?: boolean;
 }
 
 const Header = (props: headerProps) => {
@@ -22,7 +23,15 @@ const Header = (props: headerProps) => {
       <div className={"header " + props.type}>
         <IonRow>
           <IonCol size="4" className="menu-icon-container">
-            <IonMenuButton className="menu-icon" />
+            {props.menu ? (
+              <IonMenuButton className="menu-icon" />
+            ) : (
+              <IonIcon
+                md={arrowBack}
+                className="back-icon"
+                onClick={() => props.pushRoute()}
+              />
+            )}
           </IonCol>
           {props.type === "dashboard" ? (
             <IonCol size="4" className="logo-icon-container">
