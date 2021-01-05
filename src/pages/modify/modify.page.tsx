@@ -25,7 +25,7 @@ import {
   updateFormation,
   updateSkills,
 } from "../../services/modify.service";
-import ModifyModal from "../../modals/modify.modal";
+import ModifyModal from "../../modals/modify-modal/modify.modal";
 import { useHistory } from "react-router-dom";
 import SkeletonList from "../../components/skeletonLoading/skeletonListLoading.component";
 import Tabs from "../../components/tabs/tabs.component";

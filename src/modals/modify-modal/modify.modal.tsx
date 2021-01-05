@@ -9,10 +9,10 @@ import {
 } from "@ionic/react";
 import { arrowBack } from "ionicons/icons";
 import React from "react";
-import { typeKeySections } from "../constants/constants";
-import AddExperienceView from "../views/add-experience/add-experience.view";
-import AddFormationView from "../views/add-formation/add-formartion.view";
-import AddSkillsView from "../views/add-skills/add-skills.view";
+import { typeKeySections } from "../../constants/constants";
+import AddExperienceView from "../../views/add-experience/add-experience.view";
+import AddFormationView from "../../views/add-formation/add-formartion.view";
+import AddSkillsView from "../../views/add-skills/add-skills.view";
 
 interface modifyModalProps {
   type: string;
